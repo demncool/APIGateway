@@ -7,6 +7,5 @@ return [
 
     'users2'=> [
         'base_uri'=> env('USERS2_SERVICE_BASE_URL'),
-    ],
-    
+    ], 
 ];
