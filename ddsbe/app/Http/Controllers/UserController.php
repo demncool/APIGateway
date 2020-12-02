@@ -9,23 +9,26 @@ use App\Traits\ApiResponser;  // <-- use to standardized our code for api respon
 use Illuminate\Http\Request;  // <-- handling http request in lumen
 use DB; // <-- if your not using lumen eloquent you can use DB component in lumen
 
-Class UserController extends Controller {
+class UserController extends Controller
+{
     // use to add your Traits ApiResponser
     use ApiResponser;
 
     private $request;
 
-    public function __construct(Request $request){
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function getUsers(){
+    public function getUsers()
+    {
 
-        
+
         $users = User::all();
 
-        
-       
+
+
 
         // return response()->json($users, 200);
         return $this->successResponse($users);
@@ -44,17 +47,17 @@ Class UserController extends Controller {
         // return $this->successResponse($users);
         // return response()->json($users, 200);
         */
-        
     }
 
-    public function add(Request $request ){
+    public function add(Request $request)
+    {
         $rules = [
             'username' => 'required|max:20',
             'password' => 'required|max:20',
             'gender' => 'required|in:Male,Female',
         ];
 
-        $this->validate($request,$rules);
+        $this->validate($request, $rules);
 
         $user = User::create($request->all());
 
@@ -68,9 +71,9 @@ Class UserController extends Controller {
     public function show($id)
     {
 
-         $user = User::findOrFail($id);
-         return $this->successResponse($user);
-         
+        $user = User::findOrFail($id);
+        return $this->successResponse($user);
+
         // old code 
         /*
         $user = User::where('userid', $id)->first();
@@ -87,17 +90,17 @@ Class UserController extends Controller {
      * Update an existing author
      * @return Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $rules = [
-        'username' => 'max:20',
-        'password' => 'max:20',
-        'gender' => 'in:Male,Female',
+            'username' => 'max:20',
+            'password' => 'max:20',
+            'gender' => 'in:Male,Female',
         ];
 
         $this->validate($request, $rules);
         $user = User::findOrFail($id);
-            
+
         $user->fill($request->all());
 
         // if no changes happen
@@ -107,7 +110,7 @@ Class UserController extends Controller {
 
         $user->save();
         return $this->successResponse($user);
-       
+
         // old code
         /*
             $this->validate($request, $rules);
@@ -130,7 +133,7 @@ Class UserController extends Controller {
         */
     }
 
-       /**
+    /**
      * Remove an existing user
      * @return Illuminate\Http\Response
      */
@@ -151,8 +154,4 @@ Class UserController extends Controller {
         }
         */
     }
-
 }
-
-
-
