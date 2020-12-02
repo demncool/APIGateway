@@ -30,7 +30,7 @@
         */
         public function createUser1($data)
         {
-            return $this->performRequest('POST', '/users/add', $data);
+            return $this->performRequest('POST', '/users/', $data);
         }
 
         /**
@@ -46,7 +46,7 @@
         * @return string
         */
         public function editUser1($data, $id){
-            return $this->performRequest('PUT', "/users/update/{$id}", $data);
+            return $this->performRequest('PUT', "/users/{$id}", $data);
         }
 
         /**
@@ -54,7 +54,7 @@
         * @return Illuminate\Http\Response
         */
         public function deleteUser1($id){
-            return $this->performRequest('DELETE', "/users/delete/{$id}");
+            return $this->performRequest('DELETE', "/users/{$id}");
         }
 
     } //User1Service
